@@ -1,20 +1,23 @@
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-8 gap-8 font-sans">
-      {/* Main Title */}
+       {/* Image */}
+       <img src="/background.jpg" alt="Background" className="w-full max-w-md h-auto rounded-lg shadow-lg" />
+
+       {/* Main Title */}
       <h1 className="text-3xl font-bold">
         Welcome to the Strata Management Website
       </h1>
-      
+
       {/* Description */}
       <p className="text-lg">
         Here, you can manage the building&apos;s common areas, view levy details, post notices, and more.
       </p>
 
       {/* Management Tasks Section */}
-      <section className="mt-8">
+      <section className="mt-8 bg-white p-6 rounded-lg shadow-md w-full max-w-2xl">
         <h2 className="text-2xl font-semibold">Management Tasks</h2>
-        <ul className="list-disc pl-6 mt-4">
+        <ul className="list-disc pl-6 mt-4 text-gray-600">
           {/* List of tasks */}
           <li>View building notices</li>
           <li>View levy details</li>
