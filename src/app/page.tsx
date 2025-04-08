@@ -8,7 +8,7 @@ export default function Home() {
       
       {/* Description */}
       <p className="text-lg">
-        Here, you can manage the building's common areas, view levy details, post notices, and more.
+        Here, you can manage the building&apos;s common areas, view levy details, post notices, and more.
       </p>
 
       {/* Management Tasks Section */}
