@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-
 // Define Notice interface at the top of the file
 interface Notice {
   id: number;
   title: string;
   date: string;
 }
+
 export default function Home() {
   const [notices, setNotices] = useState<Notice[]>([]);  // State to store the notices
   const [isLoading, setIsLoading] = useState<boolean>(true);  // Loading state
@@ -22,12 +22,11 @@ export default function Home() {
           const data = await response.json();
           setNotices(data);  // Store the fetched notices
         } else {
-          setError("Failed to fetch notices");
+          setError("Failed to fetch notices");  // Set error message if response is not ok
         }
       } catch (error) {
-        setError("An error occurred while fetching notices.");
+        setError("An error occurred while fetching notices.");  // Set error message if fetch fails
       } finally {
-
         setIsLoading(false);  // Data fetching is complete
       }
     }
@@ -73,7 +72,7 @@ export default function Home() {
         
         {/* New Section: Display fetched notices */}
         {isLoading ? (
-          <p>Loading...</p>  // Display loading message
+          <p>Loading...</p>  // Display loading message while fetching
         ) : error ? (
           <p className="text-red-500">{error}</p>  // Display error message if fetching fails
         ) : notices.length > 0 ? (
