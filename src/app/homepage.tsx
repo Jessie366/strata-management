@@ -7,7 +7,7 @@ interface Notice {
   date: string;
 }
 export default function Home() {
-  const [notices, setNotices] = useState<any[]>([]);  // State to store the notices
+  const [notices, setNotices] = useState<Notice[]>([]);  // State to store the notices
   const [isLoading, setIsLoading] = useState<boolean>(true);  // Loading state
   const [error, setError] = useState<string | null>(null);  // Error state
 
@@ -70,7 +70,7 @@ export default function Home() {
           <p className="text-red-500">{error}</p>  // Display error message if fetching fails
         ) : notices.length > 0 ? (
           <ul className="list-disc pl-6 mt-4 text-gray-600">
-            {notices.map((notice: any) => (
+            {notices.map((notice: Notice) => (
               <li key={notice.id}>
                 <strong>{notice.title}</strong> - {notice.date}
               </li>
