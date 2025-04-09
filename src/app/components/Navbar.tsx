@@ -2,7 +2,6 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
-import clsx from 'clsx';
 
 const navItems = [
   { name: 'Home', href: '/' },

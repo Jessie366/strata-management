@@ -15,7 +15,7 @@ const About = () => {
         of strata properties, making it easier for everyone involved to stay informed and take action.
       </p>
       <p className="text-lg mb-4">
-        Whether you're a property owner, tenant, or part of the management team, we strive to provide
+        Whether you&apos;re a property owner, tenant, or part of the management team, we strive to provide
         the tools you need to make your strata experience smoother and more organized.
       </p>
       <p className="text-lg mb-4">
