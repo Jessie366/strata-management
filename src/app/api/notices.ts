@@ -1,4 +1,3 @@
-//@ts-ignore
 import { NextResponse } from 'next/server';
 
 export const config = {
@@ -16,3 +15,4 @@ export async function GET() {
   // Return notices as JSON response
   return NextResponse.json(notices);
 }
+

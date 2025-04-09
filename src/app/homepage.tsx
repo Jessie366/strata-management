@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
 
+// Define Notice interface at the top of the file
+interface Notice {
+  id: number;
+  title: string;
+  date: string;
+}
 export default function Home() {
   const [notices, setNotices] = useState<any[]>([]);  // State to store the notices
   const [isLoading, setIsLoading] = useState<boolean>(true);  // Loading state
@@ -19,6 +25,7 @@ export default function Home() {
       } catch (error) {
         setError("An error occurred while fetching notices.");
       } finally {
+
         setIsLoading(false);  // Data fetching is complete
       }
     }

@@ -1,4 +1,3 @@
-//@ts-ignore
 import { NextResponse } from 'next/server';
 
 export const config = {
@@ -6,7 +5,7 @@ export const config = {
 };
 
 // POST request handler to submit a repair request
-export async function POST(request) {
+export async function POST(request: NextResponse) {
   // Parse the incoming JSON request body
   const data = await request.json();
 

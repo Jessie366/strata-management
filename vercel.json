@@ -1,9 +1,9 @@
 {
   "redirects": [
-    { 
-      "source": "/old-home", 
-      "destination": "/", 
-      "permanent": true 
+    {
+      "source": "/old-home",
+      "destination": "/",
+      "permanent": true
     }
   ],
   "headers": [
@@ -14,17 +14,6 @@
       ]
     }
   ],
-  "regions": ["syd1"],
-  "functions": {
-    "api/**.ts": {
-      "runtime": "nodejs18.x",
-      "memory": 128,
-      "maxDuration": 10
-    },
-    "api/**.js": {
-      "runtime": "nodejs18.x",
-      "memory": 128,
-      "maxDuration": 10
-    }
-  }
+  "regions": ["syd1"]
 }
+
