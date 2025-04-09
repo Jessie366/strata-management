@@ -7,15 +7,17 @@ const nextConfig: NextConfig = {
 
   // Add logging to the Webpack configuration
   webpack(config, { isServer }) {
-    console.log('Webpack config:', config); // Log Webpack config for debugging
+    if (!isServer){
+    console.log('Webpack config:', config); 
+    }// Log Webpack config for debugging
     return config;
   },
 
   env: {
-    NEXT_DEBUG: process.env.NEXT_DEBUG || 'true', // Set NEXT_DEBUG environment variable
+    NEXT_DEBUG: process.env.NEXT_DEBUG || 'false', // Set NEXT_DEBUG environment variable
   },
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
 };
 
