@@ -13,7 +13,7 @@ interface Notice {
 export default function Home() {
   const [notices, setNotices] = useState<Notice[]>([]);  // State to store the notices
   const [isLoading, setIsLoading] = useState<boolean>(true);  // Loading state
-  const [error, setError] = useState<string | null>(null);  // Error state
+  const [error, setError] = useState<string>("");  // Error state
 
   // Fetch notices data when the component is mounted
   useEffect(() => {
