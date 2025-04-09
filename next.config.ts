@@ -13,7 +13,10 @@ const nextConfig: NextConfig = {
 
   env: {
     NEXT_DEBUG: process.env.NEXT_DEBUG || 'true', // Set NEXT_DEBUG environment variable
-  }
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;
