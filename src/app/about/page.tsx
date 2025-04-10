@@ -1,28 +1,31 @@
-// src/app/about.tsx
+'use client';
+
 import React from 'react';
 
-const About = () => {
+export default function AboutUs() {
   return (
-    <div className="max-w-4xl mx-auto mt-10 p-6 border rounded-xl shadow-lg bg-gradient-to-r from-[#f5f5dc] to-[#fafafa]">
-      <h1 className="text-4xl font-semibold text-[#4b3f3f] mb-6 text-center">About Us</h1>
-      <p className="text-lg text-gray-700 mb-4 leading-relaxed">
-        Welcome to our Strata Management platform. Our mission is to simplify and improve
-        the way strata properties are managed. We provide a comprehensive solution for managing
-        notices, repair requests, and communication between owners and the management team.
+    <div className="flex flex-col items-center justify-center min-h-screen p-8 gap-8 font-sans">
+      <h1 className="text-3xl font-bold text-blue-800">About Us</h1>
+
+      <p className="text-lg text-gray-700">
+        Welcome to our Strata Management platform. We are committed to providing
+        seamless management for your building&apos;s common areas, maintenance,
+        and notices.
       </p>
-      <p className="text-lg text-gray-700 mb-4 leading-relaxed">
-        Our platform is designed to enhance transparency and efficiency in the management
-        of strata properties, making it easier for everyone involved to stay informed and take action.
-      </p>
-      <p className="text-lg text-gray-700 mb-4 leading-relaxed">
-        Whether you&apos;re a property owner, tenant, or part of the management team, we strive to provide
-        the tools you need to make your strata experience smoother and more organized.
-      </p>
-      <p className="text-lg text-gray-700 mb-4 leading-relaxed">
-        Thank you for visiting our platform. If you have any questions, please feel free to contact us.
-      </p>
+
+      <section className="mt-8 bg-white p-6 rounded-lg shadow-md w-full max-w-2xl">
+        <h2 className="text-2xl font-semibold text-blue-600">Our Mission</h2>
+        <p className="text-gray-600 mt-4">
+          Our mission is to simplify strata management and make the lives of
+          property owners and tenants easier through efficient tools and services.
+        </p>
+      </section>
+
+      {/* Other content about the platform */}
+
+      <footer className="mt-8 text-sm text-center text-gray-500">
+        <p>© 2025 Strata Management Platform</p>
+      </footer>
     </div>
   );
-};
-
-export default About;
+}

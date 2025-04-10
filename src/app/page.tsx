@@ -1,3 +1,4 @@
+// src/app/page.tsx
 'use client';
 
 import { useEffect, useState } from "react";
@@ -59,7 +60,7 @@ export default function Home() {
 
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-8 gap-8 font-sans bg-[#f5f5dc]">
+    <div className="flex flex-col items-center justify-center min-h-screen p-8 gap-8 font-sans bg-gray-50">
        {/* Image */}
        <Image
           src="/background.jpg"
@@ -70,7 +71,7 @@ export default function Home() {
         />
 
        {/* Main Title */}
-      <h1 className="text-3xl font-bold text-[#4b3f3f]">
+      <h1 className="text-3xl font-bold text-blue-800">
         Welcome to the Strata Management Website
       </h1>
 
@@ -86,7 +87,7 @@ export default function Home() {
 
       {/* Management Tasks Section */}
       <section className="mt-8 bg-white p-6 rounded-lg shadow-md w-full max-w-2xl">
-        <h2 className="text-2xl font-semibold text-[#4b3f3f]">Management Tasks</h2>
+        <h2 className="text-2xl font-semibold text-blue-600">Management Tasks</h2>
         <ul className="list-disc pl-6 mt-4 text-gray-600">
           {/* List of tasks */}
           <li>View building notices</li>
@@ -98,7 +99,7 @@ export default function Home() {
 
       {/* Notices List Section */}
       <section className="mt-8 bg-white p-6 rounded-lg shadow-md w-full max-w-2xl">
-        <h2 className="text-2xl font-semibold text-[#4b3f3f]">Building Notices</h2>
+        <h2 className="text-2xl font-semibold text-blue-600">Building Notices</h2>
         
         {/* New Section: Display fetched notices */}
         {isLoading ? (
