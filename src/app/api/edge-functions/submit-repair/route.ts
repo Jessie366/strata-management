@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
 export const config = {
     runtime : "edge",
 };
 
 // POST request handler to submit a repair request
-export async function POST(request: NextResponse) {
+export async function POST(request: NextRequest) {
   // Parse the incoming JSON request body
   const data = await request.json();
 
