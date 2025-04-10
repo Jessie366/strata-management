@@ -3,8 +3,8 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div className="max-w-4xl mx-auto mt-10 p-6 border rounded-xl shadow-lg bg-gradient-to-r from-purple-100 to-purple-300">
-      <h1 className="text-4xl font-semibold text-purple-800 mb-6 text-center">About Us</h1>
+    <div className="max-w-4xl mx-auto mt-10 p-6 border rounded-xl shadow-lg bg-gradient-to-r from-[#f5f5dc] to-[#fafafa]">
+      <h1 className="text-4xl font-semibold text-[#4b3f3f] mb-6 text-center">About Us</h1>
       <p className="text-lg text-gray-700 mb-4 leading-relaxed">
         Welcome to our Strata Management platform. Our mission is to simplify and improve
         the way strata properties are managed. We provide a comprehensive solution for managing
