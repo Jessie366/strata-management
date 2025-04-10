@@ -19,7 +19,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchNotices() {
       try {
-        const response = await fetch("/api/notices");  // Make sure this API path is correct
+        const response = await fetch("/api/edge-functions/notices");  // Make sure this API path is correct
         if (response.ok) {
           const data = await response.json();
           setNotices(data);  // Store the fetched notices

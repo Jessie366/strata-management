@@ -8,8 +8,7 @@ const nextConfig: NextConfig = {
   // Add logging to the Webpack configuration
   webpack(config, { isServer }) {
     if (!isServer){
-    console.log('Webpack config:', config); 
-    }// Log Webpack config for debugging
+    }
     return config;
   },
 
