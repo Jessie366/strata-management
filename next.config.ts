@@ -4,6 +4,10 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Enable React Strict Mode to help detect potential issues
   reactStrictMode: true,
+  // Enable appDir feature to recognize the app directory
+  experimental: {
+  },
+
 
   // Add logging to the Webpack configuration
   webpack(config, { isServer }) {
