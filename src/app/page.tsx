@@ -25,10 +25,10 @@ export default function Home() {
           const data = await response.json();
           setNotices(data);  // Store the fetched notices
         } else {
-          setError("Failed to fetch notices :${error.message}");  // Set error message if response is not ok
+          setError(`Failed to fetch notices: ${response.statusText}`);  // Set error message if response is not ok
         }
-      } catch (error) {
-        setError("An error occurred while fetching notices: ${error.message}");  // Set error message if fetch fails
+      } catch (error: any) {
+        setError(`An error occurred while fetching notices: ${error.message}`);  // Set error message if fetch fails
       } finally {
         setIsLoading(false);  // Data fetching is complete
       }
@@ -36,11 +36,16 @@ export default function Home() {
 
     async function fetchUserIp() {
       try {
-        const response = await fetch('/api/edge-functions/user-ip');  // Match the correct API route
-        const data = await response.json();
-        setUserIp(data.ip);  // Set the IP address to state
+        const response = await fetch('/api/edge-functions/user-ip');
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Fetched IP:", data.ip);            
+          setUserIp(data.ip);
+        } else {
+          console.error("Failed to fetch IP address");
+        }
       } catch (error) {
-        console.error('Error fetching IP:', error);
+        console.error("Error fetching IP:", error);
       }
     }
 
