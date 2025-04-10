@@ -1,3 +1,4 @@
+// src/app/repair/page.js
 'use client';
 
 import React, { useState } from 'react';
@@ -25,17 +26,31 @@ export default function RepairRequest() {
   };
 
   return (
-    <div>
-      <h1>Submit a Repair Request</h1>
-      <form onSubmit={handleSubmit}>
-        <textarea
-          placeholder="Describe the repair issue..."
-          value={repairDescription}
-          onChange={(e) => setRepairDescription(e.target.value)}
-        />
-        <button type="submit">Submit</button>
+    <div className="max-w-4xl mx-auto mt-10 p-6 bg-white border border-gray-300 rounded-xl shadow-md">
+      <h1 className="text-3xl font-semibold text-blue-800 mb-6 text-center">Submit a Repair Request</h1>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-lg font-medium mb-2">Repair Description</label>
+          <textarea
+            placeholder="Describe the repair issue..."
+            value={repairDescription}
+            onChange={(e) => setRepairDescription(e.target.value)}
+            className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            rows={6}
+          />
+        </div>
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+        >
+          Submit
+        </button>
       </form>
-      {responseMessage && <p>{responseMessage}</p>}
+      {responseMessage && (
+        <p className={`mt-4 text-lg ${responseMessage.includes('Error') ? 'text-red-600' : 'text-green-600'}`}>
+          {responseMessage}
+        </p>
+      )}
     </div>
   );
 }

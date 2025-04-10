@@ -1,3 +1,4 @@
+// src/app/page.tsx
 'use client';
 
 import { useEffect, useState } from "react";
@@ -59,7 +60,7 @@ export default function Home() {
 
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-8 gap-8 font-sans">
+    <div className="flex flex-col items-center justify-center min-h-screen p-8 gap-8 font-sans bg-gray-50">
        {/* Image */}
        <Image
           src="/background.jpg"
@@ -70,23 +71,23 @@ export default function Home() {
         />
 
        {/* Main Title */}
-      <h1 className="text-3xl font-bold">
+      <h1 className="text-3xl font-bold text-blue-800">
         Welcome to the Strata Management Website
       </h1>
 
        {/* IP Address Display */}
-      <p className="text-lg">
+      <p className="text-lg text-gray-700">
         Your IP Address: {userIp ? userIp : "Loading..."}
       </p>
 
       {/* Description */}
-      <p className="text-lg">
+      <p className="text-lg text-gray-700">
         Here, you can manage the building&apos;s common areas, view levy details, post notices, and more.
       </p>
 
       {/* Management Tasks Section */}
       <section className="mt-8 bg-white p-6 rounded-lg shadow-md w-full max-w-2xl">
-        <h2 className="text-2xl font-semibold">Management Tasks</h2>
+        <h2 className="text-2xl font-semibold text-blue-600">Management Tasks</h2>
         <ul className="list-disc pl-6 mt-4 text-gray-600">
           {/* List of tasks */}
           <li>View building notices</li>
@@ -98,11 +99,11 @@ export default function Home() {
 
       {/* Notices List Section */}
       <section className="mt-8 bg-white p-6 rounded-lg shadow-md w-full max-w-2xl">
-        <h2 className="text-2xl font-semibold">Building Notices</h2>
+        <h2 className="text-2xl font-semibold text-blue-600">Building Notices</h2>
         
         {/* New Section: Display fetched notices */}
         {isLoading ? (
-          <p>Loading...</p>  // Display loading message while fetching
+          <p className="text-gray-500">Loading...</p>  // Display loading message while fetching
         ) : error ? (
           <p className="text-red-500">{error}</p>  // Display error message if fetching fails
         ) : notices.length > 0 ? (
@@ -114,12 +115,12 @@ export default function Home() {
             ))}
           </ul>
         ) : (
-          <p>No notices available</p>  // Display message if no notices are available
+          <p className="text-gray-500">No notices available</p>  // Display message if no notices are available
         )}
       </section>
 
       {/* Footer Section */}
-      <footer className="mt-8 text-sm text-center">
+      <footer className="mt-8 text-sm text-center text-gray-500">
         <p>© 2025 Strata Management Platform</p>
       </footer>
     </div>
