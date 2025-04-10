@@ -14,6 +14,7 @@ export default function Home() {
   const [notices, setNotices] = useState<Notice[]>([]);  // State to store the notices
   const [isLoading, setIsLoading] = useState<boolean>(true);  // Loading state
   const [error, setError] = useState<string>("");  // Error state
+  const [userIp, setUserIp] = useState<string>(""); // State to store user's IP address
 
   // Fetch notices data when the component is mounted
   useEffect(() => {
@@ -24,16 +25,29 @@ export default function Home() {
           const data = await response.json();
           setNotices(data);  // Store the fetched notices
         } else {
-          setError("Failed to fetch notices");  // Set error message if response is not ok
+          setError("Failed to fetch notices :${error.message}");  // Set error message if response is not ok
         }
       } catch (error) {
-        setError("An error occurred while fetching notices.");  // Set error message if fetch fails
+        setError("An error occurred while fetching notices: ${error.message}");  // Set error message if fetch fails
       } finally {
         setIsLoading(false);  // Data fetching is complete
       }
     }
+
+    async function fetchUserIp() {
+      try {
+        const response = await fetch('/api/edge-functions/user-ip');  // Match the correct API route
+        const data = await response.json();
+        setUserIp(data.ip);  // Set the IP address to state
+      } catch (error) {
+        console.error('Error fetching IP:', error);
+      }
+    }
+
     fetchNotices();
+    fetchUserIp();  // Fetch the user's IP address
   }, []);
+
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-8 gap-8 font-sans">
