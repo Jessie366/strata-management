@@ -128,7 +128,7 @@ export default function Home() {
       </section>
 
       {/* Go to About Us Button */}
-      <Link href="/about-us">
+      <Link href="/about">
         <button className="mt-4 px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-200">
           Learn More About Us
         </button>
