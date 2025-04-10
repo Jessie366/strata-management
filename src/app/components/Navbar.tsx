@@ -19,8 +19,8 @@ const Navbar = () => {
         <div className="text-2xl font-bold">Strata Management</div>
         <div className="space-x-4">
           {navItems.map((item) => (
-            <Link key={item.name} href={item.href} passHref>
-              <a className="hover:text-gray-200">{item.name}</a>
+            <Link key={item.name} href={item.href} className="hover:text-gray-200">
+              {item.name}
             </Link>
           ))}
         </div>
