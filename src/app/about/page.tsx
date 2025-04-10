@@ -21,14 +21,6 @@ const About = () => {
       <p className="text-lg text-gray-700 mb-4 leading-relaxed">
         Thank you for visiting our platform. If you have any questions, please feel free to contact us.
       </p>
-      <div className="text-center mt-8">
-        <a
-          href="/contact-us"
-          className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
-        >
-          Contact Us
-        </a>
-      </div>
     </div>
   );
 };
