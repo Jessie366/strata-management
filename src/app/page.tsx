@@ -27,8 +27,12 @@ export default function Home() {
         } else {
           setError(`Failed to fetch notices: ${response.statusText}`);  // Set error message if response is not ok
         }
-      } catch (error: any) {
-        setError(`An error occurred while fetching notices: ${error.message}`);  // Set error message if fetch fails
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          setError(`An error occurred while fetching notices: ${error.message}`);  // Set error message if fetch fails
+        } else {
+          setError("An unknown error occurred while fetching notices.");  // Handle unknown error type
+        }
       } finally {
         setIsLoading(false);  // Data fetching is complete
       }
@@ -69,6 +73,11 @@ export default function Home() {
       <h1 className="text-3xl font-bold">
         Welcome to the Strata Management Website
       </h1>
+
+       {/* IP Address Display */}
+      <p className="text-lg">
+        Your IP Address: {userIp ? userIp : "Loading..."}
+      </p>
 
       {/* Description */}
       <p className="text-lg">
