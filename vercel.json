@@ -1,13 +1,7 @@
 {
     "cleanUrls": true,
     "trailingSlash": false,
-    "redirects": [
-      {
-        "source": "/notices-board",
-        "destination": "/notices",
-        "permanent": true
-      }
-    ],
+    
     "regions": ["syd1"],
     "framework": "nextjs"
-  }
+}
