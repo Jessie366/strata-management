@@ -12,6 +12,5 @@ export async function GET(req: Request) {
     return new NextResponse('Missing required fields', { status: 400 });
   }
 
-  // ✅ deal with the data here
   return NextResponse.redirect(new URL('/thank-you', req.url));
 }
