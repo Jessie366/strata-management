@@ -3,8 +3,10 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ContactPage() {
+const router = useRouter()
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
@@ -27,7 +29,7 @@ export default function ContactPage() {
         `/api/contact?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&message=${encodeURIComponent(message)}`
       );
       if (res.ok) {
-        setSubmitted(true);
+        router.push("/thank-you");
       } else {
         setError("❌ Submission failed. Please try again.");
       }
@@ -91,6 +93,28 @@ export default function ContactPage() {
           </div>
         </form>
       )}
+
+      {/* ✅ add pure HTML GET */}
+      <div className="mt-12 border-t pt-6">
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">Or try submitting with a raw HTML GET form:</h2>
+        <form method="GET" action="/api/submit-get" className="space-y-4">
+          <div>
+            <label className="block">Name:</label>
+            <input type="text" name="name" required className="border px-4 py-2 w-full rounded" />
+          </div>
+          <div>
+            <label className="block">Email:</label>
+            <input type="email" name="email" required className="border px-4 py-2 w-full rounded" />
+          </div>
+          <div>
+            <label className="block">Message:</label>
+            <textarea name="message" required className="border px-4 py-2 w-full rounded"></textarea>
+          </div>
+          <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+            Submit via HTML GET
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
