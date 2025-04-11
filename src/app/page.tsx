@@ -18,35 +18,6 @@ export default function Home() {
   const [error, setError] = useState<string>("");  // Error state
   const [userIp, setUserIp] = useState<string>(""); // State to store user's IP address
 
-  const [formData, setFormData] = useState<Record<string, string>>({});
-  const [formError, setFormError] = useState<string>("");
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleGetSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const { name, email } = formData;
-
-    if (!name || !email) {
-      setFormError("❌ Please provide both name and email.");
-      return;
-    }
-
-    try {
-      const response = await fetch(`/api/submit-get?name=${name}&email=${email}`);
-      if (response.ok) {
-        window.location.href = "/thank-you";
-      } else {
-        setFormError("❌ Failed to submit GET request.");
-      }
-    } catch (err) {
-      setFormError("❌ Error occurred during GET request submission.");
-    }
-  };
-
   // Fetch notices data when the component is mounted
   useEffect(() => {
     async function fetchNotices() {
@@ -134,38 +105,6 @@ export default function Home() {
         </button>
       </Link>
 
-
-       {/* GET Request Form Section */}
-       <section className="mt-8 bg-white p-6 rounded-lg shadow-md w-full max-w-2xl">
-        <h2 className="text-2xl font-semibold text-blue-600">Submit Your Info (GET Request)</h2>
-        <form onSubmit={handleGetSubmit} className="space-y-4">
-          <div>
-            <label className="block text-gray-700">Name:</label>
-            <input
-              type="text"
-              name="name"
-              onChange={handleInputChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700">Email:</label>
-            <input
-              type="email"
-              name="email"
-              onChange={handleInputChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-            />
-          </div>
-          <button
-            type="submit"
-            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
-          >
-            Submit
-          </button>
-          {formError && <p className="text-red-500 text-sm">{formError}</p>}
-        </form>
-      </section>
 
 
       {/* Notices List Section */}
