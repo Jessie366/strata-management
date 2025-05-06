@@ -12,5 +12,5 @@ export async function GET(req: NextRequest) {
 
   console.log("✅ Contact GET request received:", { name, email, message });
 
-  return NextResponse.json({ message: `Thanks, ${name}! We got your message.` });
+  return NextResponse.json({ message: `✅Thanks, ${name}! We got your message.` });
 }

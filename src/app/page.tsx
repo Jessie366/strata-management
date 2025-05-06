@@ -78,7 +78,7 @@ export default function Home() {
 
        {/* IP Address Display */}
       <p className="text-lg text-gray-700">
-        Your IP Address: {userIp ? userIp : "Loading..."}
+        Your IP Address: {userIp ? userIp : " Loading... "}
       </p>
 
       {/* Description */}
@@ -98,7 +98,7 @@ export default function Home() {
         </ul>
       </section>
 
-      
+
       {/* Notices List Section */}
       <section className="mt-8 bg-white p-6 rounded-lg shadow-md w-full max-w-2xl">
         <h2 className="text-2xl font-semibold text-blue-600">Building Notices</h2>
