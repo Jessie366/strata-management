@@ -13,7 +13,7 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const response = await fetch('/api/contact.php', {
+    const response = await fetch('https://php-backend-production.up.railway.app/api/contact.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ export default function ContactPage() {
     });
 
     const data = await response.json();
-    console.log('Server response:', data); // ✅ Print full server response
+    console.log('Server response:', data); // Debug info
 
     if (data.error) {
       setResponseMessage(`Error: ${JSON.stringify(data.error)}`);
