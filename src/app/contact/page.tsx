@@ -2,9 +2,9 @@
 
 'use client';
 
-import React, { useState } from 'react';
+import React, { JSX, useState } from 'react';
 
-export default function ContactPage() {
+export default function ContactPage(): JSX.Element {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -31,6 +31,7 @@ export default function ContactPage() {
         setResponseMessage(`✅ Message sent successfully! ID: ${data.id}`);
       }
     } catch (error) {
+      console.error(error);
       setResponseMessage('❌ Submission failed. Please try again later.');
     }
   };
@@ -73,12 +74,21 @@ export default function ContactPage() {
           />
         </div>
 
-        <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-lg">
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300"
+        >
           Submit
         </button>
 
         {responseMessage && (
-          <p className={`mt-4 text-lg ${responseMessage.includes('Error') ? 'text-red-600' : 'text-green-600'}`}>
+          <p
+            className={`mt-4 text-lg font-medium ${
+              responseMessage.includes('Error') || responseMessage.includes('❌')
+                ? 'text-red-600'
+                : 'text-green-600'
+            }`}
+          >
             {responseMessage}
           </p>
         )}
