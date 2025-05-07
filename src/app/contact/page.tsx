@@ -22,10 +22,11 @@ export default function ContactPage() {
     });
 
     const data = await response.json();
+    console.log('Server response:', data); // ✅ Print full server response
+
     if (data.error) {
-      setResponseMessage(`Error: ${data.error}`);
+      setResponseMessage(`Error: ${JSON.stringify(data.error)}`);
     } else {
-      // ✅ You can replace this with a redirect if you want
       window.location.href = '/thank-you';
     }
   };
@@ -45,6 +46,7 @@ export default function ContactPage() {
             className="w-full border rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
+
         <div className="space-y-2">
           <label className="block font-medium text-gray-700">Email</label>
           <input
@@ -55,6 +57,7 @@ export default function ContactPage() {
             className="w-full border rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
+
         <div className="space-y-2">
           <label className="block font-medium text-gray-700">Message</label>
           <textarea
@@ -65,6 +68,7 @@ export default function ContactPage() {
             rows={6}
           ></textarea>
         </div>
+
         <div className="text-center">
           <button
             type="submit"
