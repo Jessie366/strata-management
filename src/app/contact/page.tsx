@@ -2,16 +2,16 @@
 
 'use client';
 
-import React, { JSX, useState } from 'react';
+import React, { useState } from 'react';
 
-export default function ContactPage(): JSX.Element {
+export default function ContactPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [responseMessage, setResponseMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault(); // 🚫 阻止表单跳转页面
 
     try {
       const res = await fetch('https://php-backend-production.up.railway.app/api/contact.php', {
@@ -31,7 +31,6 @@ export default function ContactPage(): JSX.Element {
         setResponseMessage(`✅ Message sent successfully! ID: ${data.id}`);
       }
     } catch (error) {
-      console.error(error);
       setResponseMessage('❌ Submission failed. Please try again later.');
     }
   };
@@ -74,21 +73,12 @@ export default function ContactPage(): JSX.Element {
           />
         </div>
 
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300"
-        >
+        <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-lg">
           Submit
         </button>
 
         {responseMessage && (
-          <p
-            className={`mt-4 text-lg font-medium ${
-              responseMessage.includes('Error') || responseMessage.includes('❌')
-                ? 'text-red-600'
-                : 'text-green-600'
-            }`}
-          >
+          <p className={`mt-4 text-lg ${responseMessage.includes('Error') ? 'text-red-600' : 'text-green-600'}`}>
             {responseMessage}
           </p>
         )}
