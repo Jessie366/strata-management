@@ -13,21 +13,25 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const response = await fetch('https://php-backend-production.up.railway.app/api/contact.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name, email, message }),
-    });
+    try {
+      const res = await fetch('https://php-backend-production.up.railway.app/api/contact.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, message }),
+      });
 
-    const data = await response.json();
-    console.log('Server response:', data); // Debug info
+      const data = await res.json();
+      console.log(data);
 
-    if (data.error) {
-      setResponseMessage(`Error: ${JSON.stringify(data.error)}`);
-    } else {
-      window.location.href = '/thank-you';
+      if (data.error) {
+        setResponseMessage(`❌ Error: ${data.error}`);
+      } else {
+        setResponseMessage(`✅ Message sent successfully! ID: ${data.id}`);
+      }
+    } catch (error) {
+      setResponseMessage('❌ Submission failed. Please try again later.');
     }
   };
 
@@ -36,54 +40,49 @@ export default function ContactPage() {
       <h1 className="text-3xl font-semibold text-blue-800 mb-6 text-center">Contact Us</h1>
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="space-y-2">
-          <label className="block font-medium text-gray-700">Name</label>
+        <div>
+          <label className="block font-medium">Name</label>
           <input
             type="text"
+            required
+            className="w-full border rounded-lg px-4 py-3"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            required
-            className="w-full border rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
-        <div className="space-y-2">
-          <label className="block font-medium text-gray-700">Email</label>
+        <div>
+          <label className="block font-medium">Email</label>
           <input
             type="email"
+            required
+            className="w-full border rounded-lg px-4 py-3"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full border rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
-        <div className="space-y-2">
-          <label className="block font-medium text-gray-700">Message</label>
+        <div>
+          <label className="block font-medium">Message</label>
           <textarea
+            required
+            rows={6}
+            className="w-full border rounded-lg px-4 py-3"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            required
-            className="w-full border rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            rows={6}
-          ></textarea>
+          />
         </div>
 
-        <div className="text-center">
-          <button
-            type="submit"
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300"
-          >
-            Submit
-          </button>
-        </div>
+        <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-lg">
+          Submit
+        </button>
+
+        {responseMessage && (
+          <p className={`mt-4 text-lg ${responseMessage.includes('Error') ? 'text-red-600' : 'text-green-600'}`}>
+            {responseMessage}
+          </p>
+        )}
       </form>
-
-      {responseMessage && (
-        <p className={`mt-4 text-lg ${responseMessage.includes('Error') ? 'text-red-600' : 'text-green-600'}`}>
-          {responseMessage}
-        </p>
-      )}
     </div>
   );
 }
