@@ -1,11 +1,15 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "regions": ["syd1"],
-  "framework": "nextjs",
-  "functions": {
-    "api/*.php": {
-      "runtime": "vercel-php@0.5.0"
+  "redirects": [
+    {
+      "source": "/notices-board",
+      "destination": "/notices",
+      "permanent": true
     }
-  }
+  ],
+  
+  "regions": ["syd1"],
+  "framework": "nextjs"
+}
 }
