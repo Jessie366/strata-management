@@ -14,7 +14,7 @@ export default function ContactPage() {
     e.preventDefault(); // 🚫 阻止表单跳转页面
 
     try {
-      const res = await fetch('https://php-backend-production.up.railway.app/api/contact.php', {
+      const res = await fetch('https://php-backend-production.up.railway.app/contact.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
