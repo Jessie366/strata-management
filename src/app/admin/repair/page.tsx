@@ -19,25 +19,41 @@ export default function RepairAdminPage() {
       try {
         const res = await fetch('https://php-backend-production.up.railway.app/get_repairs.php');
         if (!res.ok) throw new Error('Failed to fetch');
-
-        const rawData = await res.json();
-        const data: Repair[] = (rawData as any[]).map((item) => ({
-          id: item.id,
-          name: item.name,
-          unit: item.unit,
-          description: item.repair_description,
-          submitted_at: item.submitted_at,
-        }));
-
+  
+        // 🔒 明确声明类型：数组中每一项是 unknown，但你再安全地访问字段
+        const rawData: unknown = await res.json();
+  
+        if (!Array.isArray(rawData)) {
+          throw new Error('Unexpected data format');
+        }
+  
+        const data: Repair[] = rawData.map((item) => {
+          const record = item as {
+            id: number;
+            name: string;
+            unit: string;
+            repair_description: string;
+            submitted_at: string;
+          };
+          return {
+            id: record.id,
+            name: record.name,
+            unit: record.unit,
+            description: record.repair_description,
+            submitted_at: record.submitted_at,
+          };
+        });
+  
         setRepairs(data);
       } catch (err) {
         setError('Could not load repair data.');
         console.error(err);
       }
     };
-
+  
     fetchRepairs();
   }, []);
+  
 
   return (
     <div className="max-w-6xl mx-auto mt-10 p-6 bg-white shadow rounded-xl border">
