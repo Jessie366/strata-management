@@ -1,5 +1,5 @@
 export default async function AdminPage() {
-  const res = await fetch('https://php-backend-production.up.railway.app/api/get-contacts.php', {
+  const res = await fetch('https://php-backend-production.up.railway.app/get-contacts.php', {
     cache: 'no-store',
   });
 
