@@ -22,9 +22,9 @@ export default function AdminPage() {
         const data = await res.json();
         if (data.error) throw new Error(data.error);
         setContacts(data.contacts);
-      } catch (err: any) {
+      } catch (err) {
         setError('Could not load contact data.');
-        console.error('Error fetching contacts:', err);
+        console.error('Error fetching contacts:', err instanceof Error ? err.message : err);
       }
     };
 
