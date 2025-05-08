@@ -21,7 +21,7 @@ export default function RepairAdminPage() {
         if (!res.ok) throw new Error('Failed to fetch');
 
         const rawData = await res.json();
-        const data: Repair[] = rawData.map((item: any) => ({
+        const data: Repair[] = (rawData as any[]).map((item) => ({
           id: item.id,
           name: item.name,
           unit: item.unit,
