@@ -1,12 +1,18 @@
 export default async function AdminPage() {
-  const res = await fetch('https://php-backend-production.up.railway.app/get-contacts.php', {
-    cache: 'no-store',
-  });
+  let contacts = [];
+  try {
+    const res = await fetch('https://php-backend-production.up.railway.app/get-contacts.php', {
+      cache: 'no-store',
+    });
 
-  const contacts = await res.json();
+    if (!res.ok) {
+      throw new Error(`Fetch failed with status ${res.status}`);
+    }
 
-  if (!contacts || contacts.error) {
-    return <p className="text-red-600 text-center mt-10">❌ Failed to fetch data.</p>;
+    contacts = await res.json();
+  } catch (err) {
+    console.error('❌ Failed to load contacts:', err);
+    return <p className="text-red-600 text-center mt-10">❌ Could not load contact data.</p>;
   }
 
   return (
