@@ -10,10 +10,12 @@ const navItems = [
   { name: 'IP Checker', href: '/ip' },
   { name: 'Contact Us', href: '/contact' },
   { name: 'About Us', href: '/about' },
-  { name: 'Admin', href: '/admin' }, // ✅ Add Admin here
 ];
 
 const Navbar = () => {
+  // Check admin login cookie (only on client)
+  const isAdmin = typeof document !== 'undefined' && document.cookie.includes('admin_logged_in=true');
+
   return (
     <nav className="bg-blue-600 text-white p-4">
       <div className="flex justify-between items-center">
@@ -24,6 +26,11 @@ const Navbar = () => {
               {item.name}
             </Link>
           ))}
+          {isAdmin && (
+            <Link href="/admin" className="hover:text-gray-200 font-semibold">
+              Administration
+            </Link>
+          )}
         </div>
       </div>
     </nav>
