@@ -20,7 +20,15 @@ export default function RepairAdminPage() {
         const res = await fetch('https://php-backend-production.up.railway.app/get_repairs.php');
         if (!res.ok) throw new Error('Failed to fetch');
 
-        const data: Repair[] = await res.json();
+        const rawData = await res.json();
+        const data: Repair[] = rawData.map((item: any) => ({
+          id: item.id,
+          name: item.name,
+          unit: item.unit,
+          description: item.repair_description,
+          submitted_at: item.submitted_at,
+        }));
+
         setRepairs(data);
       } catch (err) {
         setError('Could not load repair data.');
