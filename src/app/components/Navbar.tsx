@@ -1,6 +1,6 @@
 // src/app/components/Navbar.tsx
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 const navItems = [
@@ -13,8 +13,13 @@ const navItems = [
 ];
 
 const Navbar = () => {
-  // Check admin login cookie (only on client)
-  const isAdmin = typeof document !== 'undefined' && document.cookie.includes('admin_logged_in=true');
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  // Only run on client after hydration
+  useEffect(() => {
+    const hasCookie = document.cookie.includes('admin_logged_in=true');
+    setIsAdmin(hasCookie);
+  }, []);
 
   return (
     <nav className="bg-blue-600 text-white p-4">
