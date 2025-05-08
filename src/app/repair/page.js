@@ -2,8 +2,10 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation'; // ✅ 1. 导入 useRouter
 
 export default function RepairRequest() {
+  const router = useRouter(); // ✅ 2. 初始化 router
   const [name, setName] = useState('');
   const [unit, setUnit] = useState('');
   const [repairDescription, setRepairDescription] = useState('');
@@ -23,7 +25,8 @@ export default function RepairRequest() {
     if (data.error) {
       setResponseMessage(`Error: ${data.error}`);
     } else {
-      setResponseMessage(`Success: ${data.message} (ID: ${data.repairRequest.id})`);
+      // ✅ 3. 跳转到 Thank You 页面
+      router.push('/thank-you');
     }
   };
 
@@ -71,6 +74,7 @@ export default function RepairRequest() {
           Submit
         </button>
       </form>
+
       {responseMessage && (
         <p className={`mt-4 text-lg ${responseMessage.includes('Error') ? 'text-red-600' : 'text-green-600'}`}>
           {responseMessage}
