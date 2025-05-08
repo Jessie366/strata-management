@@ -32,14 +32,14 @@ export default function RepairAdminPage() {
             id: number;
             name: string;
             unit: string;
-            repair_description: string;
+            description: string;
             submitted_at: string;
           };
           return {
             id: record.id,
             name: record.name,
             unit: record.unit,
-            description: record.repair_description,
+            description: record.description,
             submitted_at: record.submitted_at,
           };
         });
@@ -51,7 +51,7 @@ export default function RepairAdminPage() {
       }
     };
   
-    fetchRepairs();
+    fetchRepairs();  
   }, []);
   
 
