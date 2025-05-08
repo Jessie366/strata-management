@@ -18,14 +18,14 @@ export default function RepairRequest() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name, unit, description }),
+      body: JSON.stringify({ name, unit, description }), // ✅ 使用 description
     });
 
     const data = await response.json();
     if (data.error) {
       setResponseMessage(`Error: ${data.error}`);
     } else {
-      router.push('/thank-you'); // ✅ Redirect on success
+      router.push('/thank-you'); // ✅ 跳转成功页面
     }
   };
 
