@@ -1,6 +1,8 @@
 'use client';
-
+import AdminNav from './AdminNav';
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+
 
 type Contact = {
   id: number;
@@ -13,14 +15,24 @@ type Contact = {
 export default function AdminPage() {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [error, setError] = useState('');
+  const router = useRouter();
 
+  // 🔐 Auth check: if no cookie, redirect to login page
+  useEffect(() => {
+    const isLoggedIn = document.cookie.includes('admin_logged_in=true');
+    if (!isLoggedIn) {
+      router.push('/admin/login');
+    }
+  }, []);
+
+  // 📦 Fetch contact messages from backend
   useEffect(() => {
     const fetchContacts = async () => {
       try {
         const res = await fetch('https://php-backend-production.up.railway.app/get_contacts.php');
         if (!res.ok) throw new Error('Network response was not ok');
 
-        const data: Contact[] = await res.json(); // ✅ 修复点
+        const data: Contact[] = await res.json();
         setContacts(data);
       } catch (err) {
         setError('Could not load contact data.');
@@ -33,6 +45,7 @@ export default function AdminPage() {
 
   return (
     <div className="max-w-5xl mx-auto mt-10 p-6 bg-white border border-gray-300 rounded-xl shadow-lg">
+      <AdminNav />
       <h1 className="text-3xl font-bold text-center text-blue-800 mb-6">Admin Panel - Contact Messages</h1>
       {error ? (
         <p className="text-red-600 text-center">{error}</p>
