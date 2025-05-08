@@ -19,9 +19,9 @@ export default function AdminPage() {
       try {
         const res = await fetch('https://php-backend-production.up.railway.app/get_contacts.php');
         if (!res.ok) throw new Error('Network response was not ok');
-        const data = await res.json();
-        if (data.error) throw new Error(data.error);
-        setContacts(data.contacts);
+
+        const data: Contact[] = await res.json(); // ✅ 修复点
+        setContacts(data);
       } catch (err) {
         setError('Could not load contact data.');
         console.error('Error fetching contacts:', err instanceof Error ? err.message : err);
