@@ -8,7 +8,7 @@ export default function RepairRequest() {
   const router = useRouter();
   const [name, setName] = useState('');
   const [unit, setUnit] = useState('');
-  const [repairDescription, setRepairDescription] = useState('');
+  const [description, setDescription] = useState('');
   const [responseMessage, setResponseMessage] = useState('');
 
   const handleSubmit = async (e) => {
@@ -18,7 +18,7 @@ export default function RepairRequest() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name, unit, repairDescription }),
+      body: JSON.stringify({ name, unit, description }),
     });
 
     const data = await response.json();
@@ -59,8 +59,8 @@ export default function RepairRequest() {
           <label className="block text-lg font-medium mb-2">Repair Description</label>
           <textarea
             placeholder="Describe the repair issue..."
-            value={repairDescription}
-            onChange={(e) => setRepairDescription(e.target.value)}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             rows={6}
           />
