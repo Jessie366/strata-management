@@ -13,12 +13,16 @@ const navItems = [
 ];
 
 const Navbar = () => {
+  const [isClient, setIsClient] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
-  // Only run on client after hydration
+  // Ensure this only runs on client side
   useEffect(() => {
-    const hasCookie = document.cookie.includes('admin_logged_in=true');
-    setIsAdmin(hasCookie);
+    setIsClient(true);
+    if (typeof window !== 'undefined') {
+      const loggedIn = document.cookie.includes('admin_logged_in=true');
+      setIsAdmin(loggedIn);
+    }
   }, []);
 
   return (
@@ -31,7 +35,8 @@ const Navbar = () => {
               {item.name}
             </Link>
           ))}
-          {isAdmin && (
+          {/* Show only when on client and logged in */}
+          {isClient && isAdmin && (
             <Link href="/admin" className="hover:text-gray-200 font-semibold">
               Administration
             </Link>
