@@ -9,7 +9,8 @@ const navItems = [
   { name: 'Repair Request', href: '/repair' },
   { name: 'IP Checker', href: '/ip' },
   { name: 'Contact Us', href: '/contact' },
-  { name: 'About Us', href: '/about' },  
+  { name: 'About Us', href: '/about' },
+  { name: 'Admin', href: '/admin' }, // ✅ Add Admin here
 ];
 
 const Navbar = () => {
@@ -19,7 +20,7 @@ const Navbar = () => {
         <div className="text-2xl font-bold">Strata Management</div>
         <div className="space-x-4">
           {navItems.map((item) => (
-            <Link key={item.name} href={item.href} className="hover:text-gray-200">
+            <Link key={item.name} href={item.href} className="hover:text-gray-200 font-medium">
               {item.name}
             </Link>
           ))}
