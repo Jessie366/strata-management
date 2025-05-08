@@ -2,10 +2,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation'; // ✅ 1. 导入 useRouter
+import { useRouter } from 'next/navigation';
 
 export default function RepairRequest() {
-  const router = useRouter(); // ✅ 2. 初始化 router
+  const router = useRouter();
   const [name, setName] = useState('');
   const [unit, setUnit] = useState('');
   const [repairDescription, setRepairDescription] = useState('');
@@ -13,7 +13,7 @@ export default function RepairRequest() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('/api/edge-functions/submit-repair', {
+    const response = await fetch('https://php-backend-production.up.railway.app/repair.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -25,8 +25,7 @@ export default function RepairRequest() {
     if (data.error) {
       setResponseMessage(`Error: ${data.error}`);
     } else {
-      // ✅ 3. 跳转到 Thank You 页面
-      router.push('/thank-you');
+      router.push('/thank-you'); // ✅ Redirect on success
     }
   };
 
