@@ -23,7 +23,13 @@ export default async function AdminPage() {
           </tr>
         </thead>
         <tbody>
-          {contacts.map((c: any) => (
+          {contacts.map((c: {
+            id: number;
+            name: string;
+            email: string;
+            message_new: string;
+            submitted_at: string;
+          }) => (
             <tr key={c.id} className="text-center">
               <td className="border p-2">{c.id}</td>
               <td className="border p-2">{c.name}</td>
