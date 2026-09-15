@@ -1,39 +1,45 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 export default function AdminNav() {
   const pathname = usePathname();
   const router = useRouter();
 
-  const handleLogout = () => {
-    // Clear login cookie
-    document.cookie = 'admin_logged_in=; Max-Age=0; path=/';
-    // Redirect to homepage
-    router.push('/');
+  const handleLogout = async () => {
+    await fetch('/api/admin/logout', { method: 'POST' });
+    router.push('/admin/login');
+    router.refresh();
   };
 
   const linkClasses = (path: string) =>
-    `px-4 py-2 rounded-md hover:bg-blue-100 transition ${
-      pathname === path ? 'bg-blue-600 text-white' : 'text-blue-700'
+    `rounded-full px-4 py-2 text-sm font-medium transition ${
+      pathname === path
+        ? 'bg-slate-950 text-white shadow-sm'
+        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-950'
     }`;
 
   return (
-    <nav className="flex justify-center gap-4 mb-6">
-      <Link href="/admin" className={linkClasses('/admin')}>
-        Contact Messages
-      </Link>
-      <Link href="/admin/repair" className={linkClasses('/admin/repair')}>
-        Repair Requests
-      </Link>
-      <button
-        onClick={handleLogout}
-        className="px-4 py-2 text-red-600 hover:underline border border-red-300 rounded-md"
-      >
-        Logout
-      </button>
-    </nav>
+    <div className="mb-8 flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm md:flex-row md:items-center md:justify-between">
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-700">Admin</p>
+        <h1 className="mt-1 text-2xl font-semibold text-slate-950">Strata dashboard</h1>
+      </div>
+      <nav className="flex flex-wrap items-center gap-2">
+        <Link href="/admin" className={linkClasses('/admin')}>
+          Contact messages
+        </Link>
+        <Link href="/admin/repair" className={linkClasses('/admin/repair')}>
+          Repair requests
+        </Link>
+        <button
+          onClick={handleLogout}
+          className="rounded-full border border-red-200 px-4 py-2 text-sm font-medium text-red-700 transition hover:bg-red-50"
+        >
+          Logout
+        </button>
+      </nav>
+    </div>
   );
 }
-

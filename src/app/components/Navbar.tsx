@@ -1,43 +1,45 @@
-// src/app/components/Navbar.tsx
 'use client';
-import React, { useEffect, useState } from 'react';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const navItems = [
   { name: 'Home', href: '/' },
   { name: 'Notices', href: '/notices' },
-  { name: 'Repair Request', href: '/repair' },
-  { name: 'IP Checker', href: '/ip' },
-  { name: 'Contact Us', href: '/contact' },
-  { name: 'About Us', href: '/about' },
-  { name: 'Administration', href: '/admin' }, 
+  { name: 'Repairs', href: '/repair' },
+  { name: 'Contact', href: '/contact' },
+  { name: 'About', href: '/about' },
+  { name: 'Admin', href: '/admin' },
 ];
 
-const Navbar = () => {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+export default function Navbar() {
+  const pathname = usePathname();
 
   return (
-    <nav className="bg-blue-600 text-white p-4">
-      <div className="flex justify-between items-center">
-        <div className="text-2xl font-bold">Strata Management</div>
-        <div className="space-x-4">
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="hover:text-gray-200 font-medium"
-            >
-              {item.name}
-            </Link>
-          ))}
+    <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
+      <nav className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-4 md:flex-row md:items-center md:justify-between">
+        <Link href="/" className="text-xl font-semibold text-slate-950">
+          Strata Management
+        </Link>
+        <div className="flex flex-wrap gap-2">
+          {navItems.map((item) => {
+            const active = pathname === item.href;
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`rounded-full px-3 py-2 text-sm font-medium transition ${
+                  active
+                    ? 'bg-slate-950 text-white'
+                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-950'
+                }`}
+              >
+                {item.name}
+              </Link>
+            );
+          })}
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
-};
-
-export default Navbar;
+}
